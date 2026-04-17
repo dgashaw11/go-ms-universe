@@ -1,0 +1,24 @@
+# Binaries
+bin/
+*.exe
+*.app
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artefacts
+coverage.out
+coverage.html
+test-reports/
+
+# Data volumes
+pgdata/

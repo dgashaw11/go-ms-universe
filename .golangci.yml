@@ -1,0 +1,99 @@
+version: "2"
+
+run:
+  timeout: 2m
+  go: "1.26"
+
+linters:
+  default: none
+  enable:
+    - dogsled
+    - gocognit
+    - gocritic
+    - gocyclo
+    - godot
+    - govet
+    - ineffassign
+    - lll
+    - misspell
+    - nestif
+    - noctx
+    - prealloc
+    - revive
+    - staticcheck
+    - testifylint
+    - testpackage
+    - wrapcheck
+    - wsl_v5
+
+  settings:
+    gocognit:
+      min-complexity: 20
+    gocyclo:
+      min-complexity: 10
+    govet:
+      enable:
+        - shadow
+    lll:
+      line-length: 150
+      tab-width: 1
+    misspell:
+      locale: US
+    nestif:
+      min-complexity: 4
+    prealloc:
+      for-loops: true
+      range-loops: true
+      simple: false
+    staticcheck:
+      checks:
+        - all
+    testpackage:
+      skip-regexp: (whitebox)_test\.go
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2
+      enable:
+        - assign-expr
+        - err
+
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - std-error-handling
+    rules:
+      - linters:
+          - revive
+          - wsl_v5
+          - wrapcheck
+        path: _test\.go
+      - linters:
+          - govet
+        text: declaration of "(err|ctx)" shadows declaration at
+      - linters:
+          - wsl_v5
+        text: if statements should only be cuddled with assignments
+      - linters:
+          - wsl_v5
+        text: return statements should not be cuddled if block has more than two lines
+    paths:
+      - third_party$
+      - builtin$
+
+formatters:
+  enable:
+    - gci
+    - gofumpt
+
+  settings:
+    gofumpt:
+      extra-rules: true
+
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
