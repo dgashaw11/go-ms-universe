@@ -16,7 +16,6 @@ import (
 )
 
 //go:generate go tool mockgen -destination=mock/service_mock.go -package=mock . ProductService
-
 type ProductService interface {
 	Create(ctx context.Context, params product.CreateParams) (product.Product, error)
 	Delete(ctx context.Context, id uuid.UUID) error

@@ -9,7 +9,6 @@ import (
 )
 
 //go:generate go tool mockgen -destination=mock/repository_mock.go -package=mock . Repository
-
 type Repository interface {
 	Save(ctx context.Context, p Product) error
 	Delete(ctx context.Context, id uuid.UUID) error
@@ -17,7 +16,6 @@ type Repository interface {
 }
 
 //go:generate go tool mockgen -destination=mock/event_publisher_mock.go -package=mock . EventPublisher
-
 type EventPublisher interface {
 	ProductCreated(ctx context.Context, p Product) error
 	ProductDeleted(ctx context.Context, id uuid.UUID) error
